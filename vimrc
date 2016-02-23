@@ -48,6 +48,7 @@ let g:PyFlakeDisabledMessages = 'E309'
 " Tag stuff
 set tags=./.vimtags;
 let g:easytags_async = 1
+let g:easytags_always_enabled = 1
 let g:easytags_events = ['BufWritePost', 'CursorHold', 'BufReadPost']
 let g:easytags_dynamic_files = 1
 let g:easytags_include_members = 1
