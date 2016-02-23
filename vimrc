@@ -32,6 +32,7 @@ function! Write_clipboard()
 endfun
 autocmd VimLeave * call Write_clipboard()
 nnoremap <silent> dd dd:call setreg('*', getreg('+'))<CR>
+nnoremap <silent> yy yy:call setreg('*', getreg('+'))<CR>
 
 " Colors
 colorscheme default
@@ -49,3 +50,15 @@ let g:easytags_events = ['BufWritePost', 'CursorHold', 'BufReadPost']
 let g:easytags_dynamic_files = 1
 let g:easytags_include_members = 1
 let g:easytags_auto_highlight = 0
+
+" Alias :Bdelte to :Bclose, since it's what I'm used to
+command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
+
+" Remap movement keys
+noremap <C-K> H
+noremap <C-J> L
+noremap <C-M> M
+noremap H ^
+noremap L $
+noremap J <C-F>
+noremap K <C-B>
