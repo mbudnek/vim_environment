@@ -15,9 +15,11 @@ set expandtab
 set cinoptions+=L0g0N-s:0(0Ws
 
 " basic options
-set hlsearch
+syntax on
 filetype plugin on
 filetype indent on
+set ruler
+set hlsearch
 set wildmenu
 set wildmode=list:longest
 set directory=~/.vim/tmp
