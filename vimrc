@@ -58,9 +58,17 @@ let g:easytags_auto_highlight = 0
 command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
 
 " Remap movement keys
+" * hjkl are left, down, up, and right; as normal
+" * HJKL are first non-whitespace char of line, page down, page up, and last
+"   non-whiteapace char of line
+" * <C-H>, <C-J>, <C-K>, and <C-L> are Home, bottom of screen, top of screen,
+"   and End
+" * <C-M> is middle of screen
 noremap <C-K> H
 noremap <C-J> L
 noremap <C-M> M
+noremap <C-H> <HOME>
+noremap <C-L> <END>
 noremap H ^
 noremap L $
 noremap J <C-F>
