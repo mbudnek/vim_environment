@@ -22,7 +22,7 @@ set ruler
 set hlsearch
 set wildmenu
 set wildmode=list:longest
-set directory=~/.vim/tmp
+let &directory=join([split(&rtp, ',')[0], '/tmp'], '')
 
 " clipboard stuff
 set clipboard=unnamed,unnamedplus,autoselect
