@@ -36,6 +36,14 @@ autocmd VimLeave * call Write_clipboard()
 nnoremap <silent> dd dd:call setreg('*', getreg('+'))<CR>
 nnoremap <silent> yy yy:call setreg('*', getreg('+'))<CR>
 
+function! PEP8_check()
+    if &filetype == "python"
+        execute("PyFlake")
+    endif
+endfun
+
+autocmd BufReadPost * call PEP8_check()
+
 " Colors
 colorscheme default
 
@@ -43,6 +51,7 @@ colorscheme default
 let g:PyFlakeCheckers = 'pep8,frosted'
 let g:PyFlakeCWindow = 0
 let g:PyFlakeDisabledMessages = 'E309'
+let g:PyFlakeMaxLineLength = 120
 
 " Tag stuff
 set tags=./.vimtags;
