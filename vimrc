@@ -38,7 +38,6 @@ nnoremap <silent> yy yy:call setreg('*', getreg('+'))<CR>
 
 " Colors
 colorscheme default
-hi Comment	term=bold		ctermfg=DarkCyan		guifg=#80a0ff
 
 " Pyflakes
 let g:PyFlakeCheckers = 'pep8,frosted'
