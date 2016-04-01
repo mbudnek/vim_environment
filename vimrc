@@ -52,61 +52,61 @@ set bg&
 hi clear
 hi clear Normal
 hi clear Visual
-hi SpecialKey   term=bold ctermfg=4 guifg=Blue
-hi NonText      term=bold cterm=bold ctermfg=4 gui=bold guifg=Blue
-hi Directory    term=bold ctermfg=4 guifg=Blue
-hi ErrorMsg     term=standout cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Red
+hi SpecialKey   term=bold ctermfg=DarkBlue guifg=Blue
+hi NonText      term=bold cterm=bold ctermfg=DarkBlue gui=bold guifg=Blue
+hi Directory    term=bold ctermfg=DarkBlue guifg=Blue
+hi ErrorMsg     term=standout cterm=bold ctermfg=Grey ctermbg=DarkRed guifg=White guibg=Red
 hi IncSearch    term=reverse cterm=reverse gui=reverse
-hi Search       term=reverse ctermfg=0 ctermbg=3 guibg=Yellow
-hi MoreMsg      term=bold ctermfg=2 gui=bold guifg=SeaGreen
+hi Search       term=reverse ctermfg=Black ctermbg=Yellow guibg=Yellow
+hi MoreMsg      term=bold ctermfg=DarkGreen gui=bold guifg=SeaGreen
 hi ModeMsg      term=bold cterm=bold gui=bold
-hi LineNr       term=underline ctermfg=3 guifg=Brown
-hi CursorLineNr term=bold ctermfg=3 gui=bold guifg=Brown
-hi Question     term=standout ctermfg=2 gui=bold guifg=SeaGreen
+hi LineNr       term=underline ctermfg=Yellow guifg=Brown
+hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Brown
+hi Question     term=standout ctermfg=DarkGreen gui=bold guifg=SeaGreen
 hi StatusLine   term=bold,reverse cterm=bold,reverse gui=bold,reverse
 hi StatusLineNC term=reverse cterm=reverse gui=reverse
 hi VertSplit    term=reverse cterm=reverse gui=reverse
-hi Title        term=bold ctermfg=5 gui=bold guifg=Magenta
+hi Title        term=bold ctermfg=DarkMagenta gui=bold guifg=Magenta
 hi Visual       term=reverse cterm=reverse guibg=LightGrey
 hi VisualNOS    term=bold,underline cterm=bold,underline gui=bold,underline
-hi WarningMsg   term=standout ctermfg=1 guifg=Red
-hi WildMenu     term=standout ctermfg=0 ctermbg=3 guifg=Black guibg=Yellow
-hi Folded       term=standout ctermfg=4 ctermbg=7 guifg=DarkBlue guibg=LightGrey
-hi FoldColumn   term=standout ctermfg=4 ctermbg=7 guifg=DarkBlue guibg=Grey
-hi DiffAdd      term=bold ctermbg=4 guibg=LightBlue
-hi DiffChange   term=bold ctermbg=5 guibg=LightMagenta
-hi DiffDelete   term=bold cterm=bold ctermfg=4 ctermbg=6 gui=bold guifg=Blue guibg=LightCyan
-hi DiffText     term=reverse cterm=bold ctermbg=1 gui=bold guibg=Red
-hi SignColumn   term=standout ctermfg=4 ctermbg=7 guifg=DarkBlue guibg=Grey
-hi Conceal      ctermfg=7 ctermbg=0 guifg=LightGrey guibg=DarkGrey
-hi SpellBad     term=reverse ctermbg=1 gui=undercurl guisp=Red
-hi SpellCap     term=reverse ctermbg=4 gui=undercurl guisp=Blue
-hi SpellRare    term=reverse ctermbg=5 gui=undercurl guisp=Magenta
-hi SpellLocal   term=underline ctermbg=6 gui=undercurl guisp=DarkCyan
-hi Pmenu        ctermfg=0 ctermbg=5 guibg=LightMagenta
-hi PmenuSel     ctermfg=0 ctermbg=7 guibg=Grey
-hi PmenuSbar    ctermbg=7 guibg=Grey
-hi PmenuThumb   ctermbg=0 guibg=Black
-hi TabLine      term=underline cterm=underline ctermfg=0 ctermbg=7 gui=underline guibg=LightGrey
+hi WarningMsg   term=standout ctermfg=DarkRed guifg=Red
+hi WildMenu     term=standout ctermfg=Black ctermbg=Yellow guifg=Black guibg=Yellow
+hi Folded       term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=LightGrey
+hi FoldColumn   term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=Grey
+hi DiffAdd      term=bold ctermbg=DarkBlue guibg=LightBlue
+hi DiffChange   term=bold ctermbg=DarkMagenta guibg=LightMagenta
+hi DiffDelete   term=bold cterm=bold ctermfg=DarkBlue ctermbg=DarkCyan gui=bold guifg=Blue guibg=LightCyan
+hi DiffText     term=reverse cterm=bold ctermbg=DarkRed gui=bold guibg=Red
+hi SignColumn   term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=Grey
+hi Conceal      ctermfg=Grey ctermbg=Black guifg=LightGrey guibg=DarkGrey
+hi SpellBad     term=reverse ctermbg=DarkRed gui=undercurl guisp=Red
+hi SpellCap     term=reverse ctermbg=DarkBlue gui=undercurl guisp=Blue
+hi SpellRare    term=reverse ctermbg=DarkMagenta gui=undercurl guisp=Magenta
+hi SpellLocal   term=underline ctermbg=DarkCyan gui=undercurl guisp=DarkCyan
+hi Pmenu        ctermfg=Black ctermbg=DarkMagenta guibg=LightMagenta
+hi PmenuSel     ctermfg=Black ctermbg=Grey guibg=Grey
+hi PmenuSbar    ctermbg=Grey guibg=Grey
+hi PmenuThumb   ctermbg=Black guibg=Black
+hi TabLine      term=underline cterm=underline ctermfg=Black ctermbg=Grey gui=underline guibg=LightGrey
 hi TabLineSel   term=bold cterm=bold gui=bold
 hi TabLineFill  term=reverse cterm=reverse gui=reverse
-hi CursorColumn term=reverse ctermbg=7 guibg=Grey90
+hi CursorColumn term=reverse ctermbg=Grey guibg=Grey90
 hi CursorLine   term=underline cterm=underline guibg=Grey90
-hi ColorColumn  term=reverse ctermbg=1 guibg=LightRed
+hi ColorColumn  term=reverse ctermbg=DarkRed guibg=LightRed
 hi Cursor       guifg=bg guibg=fg
 hi lCursor      guifg=bg guibg=fg
-hi MatchParen   term=reverse ctermbg=6 guibg=Cyan
-hi Comment      term=bold ctermfg=4 guifg=Blue
-hi Constant     term=underline ctermfg=1 guifg=Magenta
-hi Special      term=bold ctermfg=5 guifg=SlateBlue
-hi Identifier   term=underline ctermfg=6 guifg=DarkCyan
-hi Statement    term=bold ctermfg=3 gui=bold guifg=Brown
-hi PreProc      term=underline ctermfg=5 guifg=Purple
-hi Type         term=underline ctermfg=2 gui=bold guifg=SeaGreen
-hi Underlined   term=underline cterm=underline ctermfg=5 gui=underline guifg=SlateBlue
-hi Ignore       cterm=bold ctermfg=7 guifg=bg
-hi Error        term=reverse cterm=bold ctermfg=7 ctermbg=1 guifg=White guibg=Red
-hi Todo         term=standout ctermfg=0 ctermbg=3 guifg=Blue guibg=Yellow
+hi MatchParen   term=reverse ctermbg=DarkCyan guibg=Cyan
+hi Comment      term=bold ctermfg=DarkBlue guifg=Blue
+hi Constant     term=underline ctermfg=DarkRed guifg=Magenta
+hi Special      term=bold ctermfg=DarkMagenta guifg=SlateBlue
+hi Identifier   term=underline ctermfg=DarkCyan guifg=DarkCyan
+hi Statement    term=bold ctermfg=Yellow gui=bold guifg=Brown
+hi PreProc      term=underline ctermfg=DarkMagenta guifg=Purple
+hi Type         term=underline ctermfg=DarkGreen gui=bold guifg=SeaGreen
+hi Underlined   term=underline cterm=underline ctermfg=DarkMagenta gui=underline guifg=SlateBlue
+hi Ignore       cterm=bold ctermfg=Grey guifg=bg
+hi Error        term=reverse cterm=bold ctermfg=Grey ctermbg=DarkRed guifg=White guibg=Red
+hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=Blue guibg=Yellow
 
 " Pyflakes
 let g:PyFlakeCheckers = 'pep8,frosted'
