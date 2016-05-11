@@ -108,6 +108,12 @@ hi Ignore       cterm=bold ctermfg=Grey guifg=bg
 hi Error        term=reverse cterm=bold ctermfg=Grey ctermbg=DarkRed guifg=White guibg=Red
 hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=Blue guibg=Yellow
 
+" Highlight when lines get longer than 120 characters
+augroup line_length_highlight
+  autocmd BufEnter * highlight OverLength ctermbg=DarkGrey guibg=#592929
+  autocmd BufEnter * match OverLength /\%119v.*/
+augroup END
+
 " Pyflakes
 let g:PyFlakeCheckers = 'pep8,frosted'
 let g:PyFlakeCWindow = 0
