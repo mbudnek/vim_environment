@@ -111,7 +111,7 @@ hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=Blue guibg=Yell
 " Highlight when lines get longer than 120 characters
 augroup line_length_highlight
   autocmd BufEnter * highlight OverLength ctermbg=DarkGrey guibg=#592929
-  autocmd BufEnter * match OverLength /\%119v.*/
+  autocmd BufEnter * match OverLength /\%121v.*/
 augroup END
 
 " Pyflakes
