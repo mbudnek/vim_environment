@@ -36,9 +36,14 @@ function! Write_clipboard()
         call system('xclip -i -selection clipboard', getreg('+'))
     endif
 endfun
+function! Sync_clipboard_to_selection()
+    if exists(@*)
+        setreg('*', getreg('+'))
+    endif
+endfun
 autocmd VimLeave * call Write_clipboard()
-nnoremap <silent> dd dd:call setreg('*', getreg('+'))<CR>
-nnoremap <silent> yy yy:call setreg('*', getreg('+'))<CR>
+nnoremap <silent> dd dd:call Sync_clipboard_to_selection()<CR>
+nnoremap <silent> yy yy:call Sync_clipboard_to_selection()<CR>
 
 function! PEP8_check()
     if &filetype == "python"
