@@ -124,7 +124,7 @@ hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=Blue guibg=Yell
 
 " Highlight when lines get longer than 120 characters
 function! Highlight_long_lines()
-    if &filetype
+    if len(&filetype)
         hi OverLength ctermbg=DarkGrey guibg=#592929
         match OverLength /\%121v.*/
     endif
