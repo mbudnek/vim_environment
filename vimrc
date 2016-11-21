@@ -174,8 +174,8 @@ command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
 noremap <C-K> H
 noremap <C-J> L
 noremap <C-M> M
-noremap <C-H> <HOME>
-noremap <C-L> <END>
+noremap <C-H> b
+noremap <C-L> e
 noremap H ^
 noremap L $
 noremap J <C-F>
