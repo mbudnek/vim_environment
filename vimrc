@@ -161,6 +161,10 @@ if index(discovered_filetypes, 'Protobuf')
      call xolox#easytags#filetypes#add_mapping('proto', 'Protobuf')
 endif
 
+let g:NERDDefaultAlign = 'both'
+nnoremap <silent> <C-P> :call NERDComment("n", "Toggle")<CR>
+vnoremap <silent> <C-P> :call NERDComment("v", "Toggle")<CR>
+
 " Alias :Bdelte to :Bclose, since it's what I'm used to
 command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
 
