@@ -27,6 +27,15 @@ set wildmenu
 set wildmode=list:longest
 let &directory=join([split(&rtp, ',')[0], '/tmp'], '')
 
+packadd! matchit
+function! Add_if_else_if_if_to_match_words()
+    if &filetype ==? 'c' || &filetype ==? 'cpp'
+        let s:notelse = '\%(\<else\>\s\+\)\@<!'
+        let s:notif = '\%(\s\+\<if\>\)\@!'
+        let b:match_words = b:match_words . ',' . s:notelse . '\<if\>:\<else\s\+if\>:\<else\>' . s:notif
+    endif
+endfun
+autocmd BufNewFile,BufRead * call Add_if_else_if_if_to_match_words()
 
 " clipboard stuff
 set clipboard=unnamed,unnamedplus,autoselect
