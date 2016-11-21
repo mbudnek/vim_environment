@@ -168,9 +168,8 @@ command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
 " * hjkl are left, down, up, and right; as normal
 " * HJKL are first non-whitespace char of line, page down, page up, and last
 "   non-whiteapace char of line
-" * <C-H>, <C-J>, <C-K>, and <C-L> are Home, bottom of screen, top of screen,
-"   and End
-" * <C-M> is middle of screen
+" * <C-J>, <C-K>, and <C-M> are bottom of screen, top of screen, and middle of screen
+"   <C-H> and <C-L> are previous word and next word
 noremap <C-K> H
 noremap <C-J> L
 noremap <C-M> M
