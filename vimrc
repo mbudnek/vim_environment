@@ -43,7 +43,13 @@ endfun
 autocmd BufNewFile,BufRead * call Add_if_else_if_if_to_match_words()
 
 " clipboard stuff
-set clipboard=unnamed,unnamedplus,autoselect
+set clipboard=unnamed,unnamedplus
+" Don't enable autoselect on windows since it only has one clipboard
+" and thus autoselect prevents pasting over selected text since
+" the selected text will automatically replace the current clipboard contents
+if !has('win32')
+    set clipboard+=autoselect
+endif
 " attempt to write the contents of vim's yank buffer to the clipboard on quit
 function! Write_clipboard()
     if len(getreg('+')) > 0
