@@ -47,7 +47,7 @@ set clipboard=unnamed,unnamedplus
 " Don't enable autoselect on windows since it only has one clipboard
 " and thus autoselect prevents pasting over selected text since
 " the selected text will automatically replace the current clipboard contents
-if !has('win32')
+if !has('win32') && !has('win32unix')
     set clipboard+=autoselect
 endif
 " attempt to write the contents of vim's yank buffer to the clipboard on quit
