@@ -194,3 +194,10 @@ noremap H ^
 noremap L $
 noremap J <C-F>
 noremap K <C-B>
+
+noremap gb :SidewaysRight<cr>
+noremap gB :SidewaysLeft<cr>
+let @s='gb'
+map gs @s
+let @r='gB'
+map ga @r
