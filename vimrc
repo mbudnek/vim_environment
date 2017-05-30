@@ -15,6 +15,8 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+set backspace=indent,eol,start
+
 " cindent params
 " these more-or-less match the google C++ style guide
 set cinoptions+=L0g0N-s:0(0Ws
