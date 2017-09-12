@@ -142,7 +142,7 @@ hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=Blue guibg=Yell
 " Highlight when lines get longer than 120 characters
 function! Highlight_long_lines()
     if len(&filetype)
-        hi OverLength ctermbg=DarkGrey guibg=#592929
+        hi OverLength ctermbg=Black guibg=#592929
         match OverLength /\%121v.*/
     endif
 endfunction
@@ -182,6 +182,13 @@ let g:NERDDefaultAlign = 'both'
 nnoremap <silent> <C-P> :call NERDComment("n", "Toggle")<CR>
 vnoremap <silent> <C-P> :call NERDComment("v", "Toggle")<CR>
 
+let g:airline#extensions#tabline#enabled = 1
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
 " Alias :Bdelte to :Bclose, since it's what I'm used to
 command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
 
@@ -207,3 +214,17 @@ let @s='gb'
 map gs @s
 let @r='gB'
 map ga @r
+
+let dirparts = xolox#misc#path#split(expand('%:p:h'))
+let dirname = dirparts[0]
+let filename = xolox#misc#path#join([dirname, '.vimrc_local'])
+if filereadable(filename)
+    source filename
+endif
+for part in dirparts[1:-1]
+    let dirname = xolox#misc#path#join([dirname, part])
+    let filename = xolox#misc#path#join([dirname, '.vimrc_local'])
+    if filereadable(filename)
+        exec 'source '.filename
+    endif
+endfor
