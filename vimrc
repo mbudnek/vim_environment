@@ -183,6 +183,8 @@ nnoremap <silent> <C-P> :call NERDComment("n", "Toggle")<CR>
 vnoremap <silent> <C-P> :call NERDComment("v", "Toggle")<CR>
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
