@@ -104,10 +104,10 @@ hi WarningMsg   term=standout ctermfg=DarkRed guifg=Red
 hi WildMenu     term=standout ctermfg=Black ctermbg=Yellow guifg=Black guibg=Yellow
 hi Folded       term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=LightGrey
 hi FoldColumn   term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=Grey
-hi DiffAdd      term=bold ctermbg=DarkBlue guibg=LightBlue
-hi DiffChange   term=bold ctermbg=DarkMagenta guibg=LightMagenta
-hi DiffDelete   term=bold cterm=bold ctermfg=DarkBlue ctermbg=DarkCyan gui=bold guifg=Blue guibg=LightCyan
-hi DiffText     term=reverse cterm=bold ctermbg=DarkRed gui=bold guibg=Red
+hi DiffAdd      term=bold ctermbg=Black
+hi DiffChange   term=bold ctermbg=Black
+hi DiffDelete   term=bold ctermbg=Black
+hi DiffText     term=reverse ctermbg=DarkRed gui=bold guibg=Red
 hi SignColumn   term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=Grey
 hi Conceal      ctermfg=Grey ctermbg=Black guifg=LightGrey guibg=DarkGrey
 hi SpellBad     term=reverse ctermbg=DarkRed gui=undercurl guisp=Red
