@@ -148,6 +148,14 @@ function! Highlight_long_lines()
 endfunction
 autocmd BufEnter * call Highlight_long_lines()
 
+function! Highlight_trailing_whitespace()
+    if len(&filetype)
+        hi TrailingWhitespace ctermbg=Black guibg=Black
+        match TrailingWhitespace /\s\+$/
+    endif
+endfunction
+autocmd BufEnter * call Highlight_trailing_whitespace()
+
 " Pyflakes
 let g:PyFlakeCheckers = 'pep8,frosted'
 let g:PyFlakeCWindow = 0
