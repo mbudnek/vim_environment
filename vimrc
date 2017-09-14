@@ -151,7 +151,7 @@ autocmd BufEnter * call Highlight_long_lines()
 function! Highlight_trailing_whitespace()
     if len(&filetype)
         hi TrailingWhitespace ctermbg=Black guibg=Black
-        match TrailingWhitespace /\s\+$/
+        2match TrailingWhitespace /\s\+$/
     endif
 endfunction
 autocmd BufEnter * call Highlight_trailing_whitespace()
