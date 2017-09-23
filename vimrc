@@ -186,7 +186,7 @@ if index(discovered_filetypes, 'Protobuf')
      call xolox#easytags#filetypes#add_mapping('proto', 'Protobuf')
 endif
 
-let g:NERDDefaultAlign = 'both'
+let g:NERDDefaultAlign = 'left'
 nnoremap <silent> <C-P> :call NERDComment("n", "Toggle")<CR>
 vnoremap <silent> <C-P> :call NERDComment("v", "Toggle")<CR>
 
