@@ -190,6 +190,10 @@ let g:NERDDefaultAlign = 'left'
 nnoremap <silent> <C-P> :call NERDComment("n", "Toggle")<CR>
 vnoremap <silent> <C-P> :call NERDComment("v", "Toggle")<CR>
 
+if &encoding != 'utf-8'
+    let &encoding = 'utf-8'
+endif
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
