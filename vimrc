@@ -78,21 +78,31 @@ function! PEP8_check()
 endfun
 autocmd BufReadPost * call PEP8_check()
 
+if has("gui_running")
+    set lines=70 columns=120 linespace=0
+    if has("gui_win32")
+        set guifont=DejaVu_Sans_Mono_for_Powerline:h10
+    else
+        set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+endif
+
 " Colors
 set bg&
 hi clear
 hi clear Normal
 hi clear Visual
-hi SpecialKey   term=bold ctermfg=DarkBlue guifg=Blue
-hi NonText      term=bold cterm=bold ctermfg=DarkBlue gui=bold guifg=Blue
-hi Directory    term=bold ctermfg=DarkBlue guifg=Blue
+hi Normal       guifg=LightGrey guibg=#1D1F21
+hi SpecialKey   term=bold ctermfg=DarkBlue guifg=#6699CC
+hi NonText      term=bold cterm=bold ctermfg=DarkBlue gui=bold guifg=#6699CC
+hi Directory    term=bold ctermfg=DarkBlue guifg=#6699CC
 hi ErrorMsg     term=standout cterm=bold ctermfg=Grey ctermbg=DarkRed guifg=White guibg=Red
 hi IncSearch    term=reverse cterm=reverse gui=reverse
-hi Search       term=reverse ctermfg=Black ctermbg=Yellow guibg=Yellow
+hi Search       term=reverse ctermfg=Black ctermbg=Yellow guibg=#CCCC64
 hi MoreMsg      term=bold ctermfg=DarkGreen gui=bold guifg=SeaGreen
 hi ModeMsg      term=bold cterm=bold gui=bold
-hi LineNr       term=underline ctermfg=Yellow guifg=Brown
-hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Brown
+hi LineNr       term=underline ctermfg=Yellow guifg=#CCCC64
+hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=#CCCC64
 hi Question     term=standout ctermfg=DarkGreen gui=bold guifg=SeaGreen
 hi StatusLine   term=bold,reverse cterm=bold,reverse gui=bold,reverse
 hi StatusLineNC term=reverse cterm=reverse gui=reverse
@@ -101,7 +111,7 @@ hi Title        term=bold ctermfg=DarkMagenta gui=bold guifg=Magenta
 hi Visual       term=reverse cterm=reverse guibg=LightGrey
 hi VisualNOS    term=bold,underline cterm=bold,underline gui=bold,underline
 hi WarningMsg   term=standout ctermfg=DarkRed guifg=Red
-hi WildMenu     term=standout ctermfg=Black ctermbg=Yellow guifg=Black guibg=Yellow
+hi WildMenu     term=standout ctermfg=Black ctermbg=Yellow guifg=Black guibg=#CCCC64
 hi Folded       term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=LightGrey
 hi FoldColumn   term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=Grey
 hi DiffAdd      term=bold ctermbg=Black
@@ -127,17 +137,17 @@ hi ColorColumn  term=reverse ctermbg=DarkRed guibg=LightRed
 hi Cursor       guifg=bg guibg=fg
 hi lCursor      guifg=bg guibg=fg
 hi MatchParen   term=reverse ctermbg=DarkCyan guibg=Cyan
-hi Comment      term=bold ctermfg=DarkBlue guifg=Blue
+hi Comment      term=bold ctermfg=DarkBlue guifg=#6699CC
 hi Constant     term=underline ctermfg=DarkRed guifg=Magenta
 hi Special      term=bold ctermfg=DarkMagenta guifg=SlateBlue
 hi Identifier   term=underline ctermfg=DarkCyan guifg=DarkCyan
-hi Statement    term=bold ctermfg=Yellow gui=bold guifg=Brown
-hi PreProc      term=underline ctermfg=DarkMagenta guifg=Purple
-hi Type         term=underline ctermfg=DarkGreen gui=bold guifg=SeaGreen
+hi Statement    term=bold ctermfg=Yellow gui=NONE guifg=#CCCC64
+hi PreProc      term=underline ctermfg=DarkMagenta guifg=#C864C8
+hi Type         term=underline ctermfg=DarkGreen gui=NONE guifg=#00C84B
 hi Underlined   term=underline cterm=underline ctermfg=DarkMagenta gui=underline guifg=SlateBlue
 hi Ignore       cterm=bold ctermfg=Grey guifg=bg
 hi Error        term=reverse cterm=bold ctermfg=Grey ctermbg=DarkRed guifg=White guibg=Red
-hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=Blue guibg=Yellow
+hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=#6699CC guibg=#CCCC64
 
 " Highlight when lines get longer than 120 characters
 function! Highlight_long_lines()
