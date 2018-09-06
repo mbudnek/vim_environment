@@ -140,7 +140,7 @@ hi MatchParen   term=reverse ctermbg=DarkCyan guibg=Cyan
 hi Comment      term=bold ctermfg=DarkBlue guifg=#6699CC
 hi Constant     term=underline ctermfg=DarkRed guifg=Magenta
 hi Special      term=bold ctermfg=DarkMagenta guifg=SlateBlue
-hi Identifier   term=underline ctermfg=DarkCyan guifg=DarkCyan
+hi Identifier   term=underline cterm=NONE ctermfg=DarkCyan guifg=DarkCyan
 hi Statement    term=bold ctermfg=Yellow gui=NONE guifg=#CCCC64
 hi PreProc      term=underline ctermfg=DarkMagenta guifg=#C864C8
 hi Type         term=underline ctermfg=DarkGreen gui=NONE guifg=#00C84B
