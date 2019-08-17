@@ -244,6 +244,9 @@ noremap L $
 noremap J <C-F>
 noremap K <C-B>
 
+" Map <C-p> as 'paste without yank'
+vnoremap <C-p> "_dp
+
 noremap <silent> gb :SidewaysRight<cr>
 noremap <silent> gB :SidewaysLeft<cr>
 let @s='gb'
