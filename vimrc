@@ -197,8 +197,9 @@ if index(discovered_filetypes, 'Protobuf')
 endif
 
 let g:NERDDefaultAlign = 'left'
-nnoremap <silent> <C-P> :call NERDComment("n", "Toggle")<CR>
-vnoremap <silent> <C-P> :call NERDComment("v", "Toggle")<CR>
+" <C-_> is actually CTRL-/ in (most?) terminals for some strange reason
+nnoremap <silent> <C-_> :call NERDComment("n", "Toggle")<CR>
+vnoremap <silent> <C-_> :call NERDComment("v", "Toggle")<CR>
 
 if &encoding != 'utf-8'
     let &encoding = 'utf-8'
@@ -212,6 +213,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+let g:jedi#documentation_command = '<leader>D'
+
+set completeopt-=preview
 
 " Alias :Bdelte to :Bclose, since it's what I'm used to
 command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
