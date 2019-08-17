@@ -15,6 +15,13 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+function Go_Tabs()
+    set noexpandtab
+    set tabstop=4
+    set softtabstop=5
+endfunction
+autocmd BufNewFile,BufRead *.go call Go_Tabs()
+
 set backspace=indent,eol,start
 
 " cindent params
