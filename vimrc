@@ -1,10 +1,16 @@
 " Load pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+" These have to be here before I call pathogen#infect so that they're
+" visible when their corresponding plugin loads.
+
 " Suppress easytags warning about ctags not being installed
 " It's really annoying, and I don't really need easytags everywhere
-" This has to be here before I call pathogen#infect so that it's
-" visible when the easytags plugin loads.
 let g:easytags_suppress_ctags_warning = 1
+
+" Suppress jedi-vim warning if jedi isn't installed
+let g:jedi#squelch_py_warning = 1
+
 call pathogen#infect()
 
 " Tabs
