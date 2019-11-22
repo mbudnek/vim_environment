@@ -84,12 +84,12 @@ autocmd VimLeave * call Write_clipboard()
 nnoremap <silent> dd dd:call Sync_clipboard_to_selection()<CR>
 nnoremap <silent> yy yy:call Sync_clipboard_to_selection()<CR>
 
-function! PEP8_check()
-    if &filetype == "python"
-        execute("PyFlake")
-    endif
-endfun
-autocmd BufReadPost * call PEP8_check()
+"function! PEP8_check()
+"    if &filetype == "python"
+"        execute("PyFlake")
+"    endif
+"endfun
+"autocmd BufReadPost * call PEP8_check()
 
 if has("gui_running")
     set lines=70 columns=120 linespace=0
@@ -180,10 +180,10 @@ endfunction
 autocmd BufEnter * call Highlight_trailing_whitespace()
 
 " Pyflakes
-let g:PyFlakeCheckers = 'pep8,frosted'
-let g:PyFlakeCWindow = 0
-let g:PyFlakeDisabledMessages = 'E309'
-let g:PyFlakeMaxLineLength = 120
+"let g:PyFlakeCheckers = 'pep8,frosted'
+"let g:PyFlakeCWindow = 0
+"let g:PyFlakeDisabledMessages = 'E309'
+"let g:PyFlakeMaxLineLength = 120
 
 " Tag stuff
 let discovered_filetypes = []
@@ -223,9 +223,10 @@ let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_python_flake8_args = "--ignore=E309,W503 --max-line-length=120"
 
 let g:jedi#documentation_command = '<leader>D'
 
