@@ -230,6 +230,9 @@ let g:syntastic_python_flake8_args = "--ignore=E309,W503 --max-line-length=120"
 
 let g:jedi#documentation_command = '<leader>D'
 
+let g:formatdef_jq = '"jq"'
+let g:formatters_json = ['jq']
+
 set completeopt-=preview
 
 " Alias :Bdelte to :Bclose, since it's what I'm used to
