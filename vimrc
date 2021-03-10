@@ -7,9 +7,10 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Suppress easytags warning about ctags not being installed
 " It's really annoying, and I don't really need easytags everywhere
 let g:easytags_suppress_ctags_warning = 1
+let g:easytags_cmd = '/usr/bin/ctags'
 
-" Suppress jedi-vim warning if jedi isn't installed
-let g:jedi#squelch_py_warning = 1
+" Move CoC data directory into vim home directory
+let g:coc_data_home=join([split(&rtp, ',')[0], '/coc'], '')
 
 call pathogen#infect()
 
@@ -27,6 +28,13 @@ function Go_Tabs()
     set softtabstop=5
 endfunction
 autocmd BufNewFile,BufRead *.go call Go_Tabs()
+
+function Java_Tabs()
+    set tabstop=3
+    set softtabstop=2
+    set shiftwidth=2
+endfunction
+autocmd BufNewFile,BufRead *.java call Java_Tabs()
 
 set backspace=indent,eol,start
 
@@ -193,7 +201,7 @@ if !empty(command_line)
     let command_line .= ' --list-languages'
     for line in xolox#misc#os#exec({'command': command_line})['stdout']
       if line =~ '^\w\S*$'
-        call add(supported_filetypes)
+        call add(discovered_filetypes, line)
       endif
     endfor
 endif
@@ -228,10 +236,13 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_python_flake8_args = "--ignore=E309,W503 --max-line-length=120"
 
-let g:jedi#documentation_command = '<leader>D'
-
 let g:formatdef_jq = '"jq"'
 let g:formatters_json = ['jq']
+
+nnoremap <silent> <leader>f :CocFix<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+inoremap <silent><expr> <C-@> coc#refresh()
 
 set completeopt-=preview
 
