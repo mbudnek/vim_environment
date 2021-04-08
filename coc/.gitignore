@@ -3,5 +3,5 @@
 !.gitignore
 !commands
 !extensions/**
-extensions/coc-java-data
+extensions/coc-java-data/**
 !*/
