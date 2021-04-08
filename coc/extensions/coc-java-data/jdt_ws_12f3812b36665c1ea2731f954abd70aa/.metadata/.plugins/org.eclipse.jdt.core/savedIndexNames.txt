@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+/home/miles/.config/coc/extensions/coc-java-data/jdt_ws_12f3812b36665c1ea2731f954abd70aa/.metadata/.plugins/org.eclipse.jdt.core
-3842426239.index
-646308851.index
