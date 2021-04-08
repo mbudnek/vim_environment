@@ -40,6 +40,14 @@ set backspace=indent,eol,start
 
 " cindent params
 " these more-or-less match the google C++ style guide
+" L0  - Do not de-indent goto labels
+" g0  - Do not indent C++ access specifiers
+" N-s - Indent by siftwidth less inside C++ namespaces.
+"       In other words, do not indent inside namespaces.
+" :0  - Do not indent case labels in switch statements
+" (0  - Do not do extra indenting on newlines within unclosed parenthesis
+" Ws  - Indent by shiftwidth on newlines if an unclosed parenthisis is the last
+"       character on the preceding line
 set cinoptions+=L0g0N-s:0(0Ws
 
 " Add protobuf filetype
@@ -238,6 +246,8 @@ let g:syntastic_python_flake8_args = "--ignore=E309,W503 --max-line-length=120"
 
 let g:formatdef_jq = '"jq"'
 let g:formatters_json = ['jq']
+
+let g:vimspector_enable_mappings = 'HUMAN'
 
 nnoremap <silent> <leader>f :CocFix<cr>
 nmap <silent> gd <Plug>(coc-definition)

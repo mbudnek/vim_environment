@@ -40,3 +40,6 @@
 [submodule "bundle/coc.nvim"]
 	path = bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
+[submodule "bundle/vimspector"]
+	path = bundle/vimspector
+	url = https://github.com/puremourning/vimspector
