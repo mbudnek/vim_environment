@@ -1,4 +1,7 @@
+java.clean.workspace
+java.workspace.compile
+java.projectConfiguration.update
+java.open.serverLog
 java.open.output
 document.jumpToNextSymbol
-java.open.serverLog
 workspace.showOutput
