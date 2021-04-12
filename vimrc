@@ -248,8 +248,20 @@ let g:formatdef_jq = '"jq"'
 let g:formatters_json = ['jq']
 
 let g:vimspector_enable_mappings = 'HUMAN'
+" Launch the debugger
+nmap <F1> <Plug>VimspectorContinue
+" Close the debugger
+nmap <Leader><F1> <Plug>VimspectorReset
+" Query the value of the variable under the cursor
+nmap <Leader>q <Plug>VimspectorBalloonEval
+" Query the value of the selected expression
+xmap <Leader>q <Plug>VimspectorBalloonEval
+" Up and down the call stack
+nmap <Leader><F11> <Plug>VimspectorUpFrame
+nmap <Leader><F12> <Plug>VimspectorDownFrame
 
 nnoremap <silent> <leader>f :CocFix<cr>
+nmap <silent> <leader>r <Plug>(coc-refactor)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 inoremap <silent><expr> <C-@> coc#refresh()
