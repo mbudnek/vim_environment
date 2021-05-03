@@ -7,12 +7,26 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Suppress easytags warning about ctags not being installed
 " It's really annoying, and I don't really need easytags everywhere
 let g:easytags_suppress_ctags_warning = 1
-let g:easytags_cmd = '/usr/bin/ctags'
 
 " Move CoC data directory into vim home directory
 let g:coc_data_home=join([split(&rtp, ',')[0], '/coc'], '')
 
 call pathogen#infect()
+
+function InSSH()
+    if $SSH_CLIENT != '' || $SSH_TTY != ''
+        return 1
+    endif
+    let l:parent = system('ps -o comm= -p ' . $PPID)
+    if (l:parent =~ '^sshd')
+        return 1
+    endif
+    return 0
+endfunction
+
+if !InSSH()
+    set mouse=a
+endif
 
 " Tabs
 " Use a 5 space tab character and 4 space soft tabs to easily tell when tabs
@@ -67,9 +81,12 @@ let &directory=join([split(&rtp, ',')[0], '/tmp'], '')
 try
     packadd! matchit
     function! Add_if_else_if_if_to_match_words()
-        if &filetype ==? 'c' || &filetype ==? 'cpp'
+        if &filetype ==? 'c' || &filetype ==? 'cpp' || &filetype==? 'java'
             let s:notelse = '\%(\<else\>\s\+\)\@<!'
             let s:notif = '\%(\s\+\<if\>\)\@!'
+            if !exists('b:match_words')
+                let b:match_words = ''
+            endif
             let b:match_words = b:match_words . ',' . s:notelse . '\<if\>:\<else\s\+if\>:\<else\>' . s:notif
         endif
     endfun
@@ -79,10 +96,10 @@ endtry
 
 " clipboard stuff
 set clipboard=unnamed,unnamedplus
-" Don't enable autoselect on windows since it only has one clipboard
+" Don't enable autoselect on windows and mac since they only have one clipboard
 " and thus autoselect prevents pasting over selected text since
 " the selected text will automatically replace the current clipboard contents
-if !has('win32') && !has('win32unix')
+if !has('win32') && !has('win32unix') && !has('mac')
     set clipboard+=autoselect
 endif
 " attempt to write the contents of vim's yank buffer to the clipboard on quit
@@ -99,13 +116,6 @@ endfun
 autocmd VimLeave * call Write_clipboard()
 nnoremap <silent> dd dd:call Sync_clipboard_to_selection()<CR>
 nnoremap <silent> yy yy:call Sync_clipboard_to_selection()<CR>
-
-"function! PEP8_check()
-"    if &filetype == "python"
-"        execute("PyFlake")
-"    endif
-"endfun
-"autocmd BufReadPost * call PEP8_check()
 
 if has("gui_running")
     set lines=70 columns=120 linespace=0
@@ -195,25 +205,7 @@ function! Highlight_trailing_whitespace()
 endfunction
 autocmd BufEnter * call Highlight_trailing_whitespace()
 
-" Pyflakes
-"let g:PyFlakeCheckers = 'pep8,frosted'
-"let g:PyFlakeCWindow = 0
-"let g:PyFlakeDisabledMessages = 'E309'
-"let g:PyFlakeMaxLineLength = 120
-
 " Tag stuff
-let discovered_filetypes = []
-let command_line = xolox#easytags#ctags_command()
-if !empty(command_line)
-    let starttime = xolox#misc#timer#start()
-    let command_line .= ' --list-languages'
-    for line in xolox#misc#os#exec({'command': command_line})['stdout']
-      if line =~ '^\w\S*$'
-        call add(discovered_filetypes, line)
-      endif
-    endfor
-endif
-
 set tags=./.vimtags;
 let g:easytags_async = 1
 let g:easytags_always_enabled = 1
@@ -221,9 +213,7 @@ let g:easytags_events = ['BufWritePost', 'CursorHold', 'BufReadPost']
 let g:easytags_dynamic_files = 1
 let g:easytags_include_members = 1
 let g:easytags_auto_highlight = 0
-if index(discovered_filetypes, 'Protobuf')
-     call xolox#easytags#filetypes#add_mapping('proto', 'Protobuf')
-endif
+call xolox#easytags#filetypes#add_mapping('proto', 'Protobuf')
 
 let g:NERDDefaultAlign = 'left'
 " <C-_> is actually CTRL-/ in (most?) terminals for some strange reason
