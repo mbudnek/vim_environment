@@ -287,6 +287,46 @@ noremap L $
 noremap J <C-F>
 noremap K <C-B>
 
+" Map alt-h and alt-l to resize vertical splits
+" and alt-j and alt-k to resize horizontal splits
+nnoremap <silent> <A-h> :vertical resize -2<cr>
+nnoremap <silent> <A-l> :vertical resize +2<cr>
+nnoremap <silent> <A-j> :resize +2<cr>
+nnoremap <silent> <A-k> :resize -2<cr>
+" macOS treats Alt strangely, so use these terminal mappings to make the above
+" alt key mappings work
+if has('mac')
+    execute "set <A-h>=˙"
+    execute "set <A-l>=¬"
+    execute "set <A-j>=∆"
+    execute "set <A-k>=˚"
+endif
+
+" Map <C-n> to toggle the NERDTree file browser
+nnoremap <C-n> :NERDTreeToggle<cr>
+
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+let NERDTreeMouseMode=2
+
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusHighlightingCustom = {
+            \    'Unmerged':  'ctermfg=Red guifg=Red',
+            \    'Deleted':   'ctermfg=Red guifg=Red',
+            \    'Modified':  'ctermfg=Yellow guifg=Yellow',
+            \    'Renamed':   'ctermfg=Yellow guifg=Yellow',
+            \    'Untracked': 'ctermfg=Yellow guifg=Yellow',
+            \    'Dirty':     'ctermfg=Yellow guifg=Yellow',
+            \    'Staged':    'ctermfg=Green guifg=Green',
+            \    'Ignored':   'ctermfg=Blue guifg=Blue'
+            \}
+
 " Map <C-p> as 'paste without yank'
 vnoremap <C-p> "_dp
 
