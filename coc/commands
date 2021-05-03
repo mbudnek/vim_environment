@@ -1,8 +1,8 @@
 java.debug.vimspector.start
 java.clean.workspace
+java.open.output
 java.workspace.compile
 java.projectConfiguration.update
 java.open.serverLog
-java.open.output
 document.jumpToNextSymbol
 workspace.showOutput

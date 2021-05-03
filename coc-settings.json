@@ -1,4 +1,5 @@
 {
+    "diagnostic.messageTarget": "echo",
     "suggest.autoTrigger": "none",
     "java.debug.vimspector.profile": null
 }
