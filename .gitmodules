@@ -56,3 +56,6 @@
 [submodule "bundle/vim-nerdtree-syntax-highlight"]
 	path = bundle/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule "bundle/nerdtree-visual-selection"]
+	path = bundle/nerdtree-visual-selection
+	url = https://github.com/PhilRunninger/nerdtree-visual-selection.git
