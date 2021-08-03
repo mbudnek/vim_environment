@@ -59,3 +59,6 @@
 [submodule "bundle/nerdtree-visual-selection"]
 	path = bundle/nerdtree-visual-selection
 	url = https://github.com/PhilRunninger/nerdtree-visual-selection.git
+[submodule "bundle/vim-graphql"]
+	path = bundle/vim-graphql
+	url = https://github.com/jparise/vim-graphql.git

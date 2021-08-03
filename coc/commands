@@ -1,8 +1,11 @@
-java.debug.vimspector.start
+tsserver.reloadProjects
+java.open.serverLog
 java.clean.workspace
+java.open.formatter.settings
+java.updateLanguageServer
+document.jumpToNextSymbol
+java.debug.vimspector.start
 java.open.output
 java.workspace.compile
 java.projectConfiguration.update
-java.open.serverLog
-document.jumpToNextSymbol
 workspace.showOutput

@@ -191,7 +191,7 @@ hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=#6699CC guibg=#
 " Highlight when lines get longer than 120 characters
 function! Highlight_long_lines()
     if len(&filetype)
-        hi OverLength ctermbg=Black guibg=#592929
+        hi OverLength ctermbg=DarkGrey guibg=#592929
         match OverLength /\%121v.*/
     endif
 endfunction
@@ -199,7 +199,7 @@ autocmd BufEnter * call Highlight_long_lines()
 
 function! Highlight_trailing_whitespace()
     if len(&filetype)
-        hi TrailingWhitespace ctermbg=Black guibg=Black
+        hi TrailingWhitespace ctermbg=DarkGrey guibg=DarkGrey
         2match TrailingWhitespace /\s\+$/
     endif
 endfunction
@@ -317,15 +317,13 @@ let g:NERDTreeGitStatusHighlightingCustom = {
             \    'Ignored':   'ctermfg=Blue guifg=Blue'
             \}
 
+let g:NERDTreeLimitedSyntax = 1
+
 " Map <C-p> as 'paste without yank'
 vnoremap <C-p> "_dp
 
-noremap <silent> gb :SidewaysRight<cr>
-noremap <silent> gB :SidewaysLeft<cr>
-let @s='gb'
-map gs @s
-let @r='gB'
-map ga @r
+nnoremap <silent> gs :SidewaysRight<cr>
+nnoremap <silent> ga :SidewaysLeft<cr>
 
 let dirparts = xolox#misc#path#split(expand('%:p:h'))
 let dirname = dirparts[0]

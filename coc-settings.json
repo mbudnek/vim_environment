@@ -1,5 +1,7 @@
 {
     "diagnostic.messageTarget": "echo",
     "suggest.autoTrigger": "none",
-    "java.debug.vimspector.profile": null
+    "java.debug.vimspector.profile": null,
+    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+    "java.format.settings.profile": "GoogleStyle"
 }
