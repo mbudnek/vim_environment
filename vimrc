@@ -13,18 +13,11 @@ let g:coc_data_home=join([split(&rtp, ',')[0], '/coc'], '')
 
 call pathogen#infect()
 
-function InSSH()
-    if $SSH_CLIENT != '' || $SSH_TTY != ''
-        return 1
-    endif
-    let l:parent = system('ps -o comm= -p ' . $PPID)
-    if (l:parent =~ '^sshd')
-        return 1
-    endif
-    return 0
+function HaveX11()
+    return $DISPLAY != ''
 endfunction
 
-if !InSSH()
+if HaveX11()
     set mouse=a
 endif
 
@@ -114,8 +107,16 @@ function! Sync_clipboard_to_selection()
     endif
 endfun
 autocmd VimLeave * call Write_clipboard()
-nnoremap <silent> dd dd:call Sync_clipboard_to_selection()<CR>
-nnoremap <silent> yy yy:call Sync_clipboard_to_selection()<CR>
+noremap <silent> dd dd:call Sync_clipboard_to_selection()<CR>
+noremap <silent> yy yy:call Sync_clipboard_to_selection()<CR>
+
+" Make d copy text to the 0 register like yank does by default
+" Make p paste from the 0 register
+" This makes it so that pasting over text in visual mode doesn't make the next
+" paste operation paste the text that was pasted over
+" noremap <silent> p "0p
+" noremap <silent> P "0P
+" noremap <silent> d d:let @0=@"<cr>
 
 if has("gui_running")
     set lines=70 columns=120 linespace=0
@@ -217,8 +218,8 @@ call xolox#easytags#filetypes#add_mapping('proto', 'Protobuf')
 
 let g:NERDDefaultAlign = 'left'
 " <C-_> is actually CTRL-/ in (most?) terminals for some strange reason
-nnoremap <silent> <C-_> :call NERDComment("n", "Toggle")<CR>
-vnoremap <silent> <C-_> :call NERDComment("v", "Toggle")<CR>
+nnoremap <silent> <C-_> :call nerdcommenter#Comment("n", "Toggle")<CR>
+vnoremap <silent> <C-_> :call nerdcommenter#Comment("v", "Toggle")<CR>
 
 if &encoding != 'utf-8'
     let &encoding = 'utf-8'
@@ -233,6 +234,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_python_flake8_args = "--ignore=E309,W503 --max-line-length=120"
+
+let g:syntastic_yaml_checkers = ['yamllint']
 
 let g:formatdef_jq = '"jq"'
 let g:formatters_json = ['jq']
@@ -279,17 +282,18 @@ noremap K <C-B>
 
 " Map alt-h and alt-l to resize vertical splits
 " and alt-j and alt-k to resize horizontal splits
-nnoremap <silent> <A-h> :vertical resize -2<cr>
-nnoremap <silent> <A-l> :vertical resize +2<cr>
-nnoremap <silent> <A-j> :resize +2<cr>
-nnoremap <silent> <A-k> :resize -2<cr>
-" macOS treats Alt strangely, so use these terminal mappings to make the above
-" alt key mappings work
 if has('mac')
-    execute "set <A-h>=˙"
-    execute "set <A-l>=¬"
-    execute "set <A-j>=∆"
-    execute "set <A-k>=˚"
+    " macOS treats Alt strangely, so map the actual keys that get generated
+    " by alt+whatever
+    nnoremap <silent> ˙ :vertical resize -2<cr>
+    nnoremap <silent> ¬ :vertical resize +2<cr>
+    nnoremap <silent> ∆ :resize +2<cr>
+    nnoremap <silent> ˚ :resize -2<cr>
+else
+    nnoremap <silent> <A-h> :vertical resize -2<cr>
+    nnoremap <silent> <A-l> :vertical resize +2<cr>
+    nnoremap <silent> <A-j> :resize +2<cr>
+    nnoremap <silent> <A-k> :resize -2<cr>
 endif
 
 " Map <C-n> to toggle the NERDTree file browser
@@ -319,8 +323,7 @@ let g:NERDTreeGitStatusHighlightingCustom = {
 
 let g:NERDTreeLimitedSyntax = 1
 
-" Map <C-p> as 'paste without yank'
-vnoremap <C-p> "_dp
+tnoremap <silent> <esc> <C-\><C-n>
 
 nnoremap <silent> gs :SidewaysRight<cr>
 nnoremap <silent> ga :SidewaysLeft<cr>
