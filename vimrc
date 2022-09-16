@@ -106,7 +106,9 @@ function! Sync_clipboard_to_selection()
         setreg('*', getreg('+'))
     endif
 endfun
-autocmd VimLeave * call Write_clipboard()
+if !has('win32') && !has('mac')
+    autocmd VimLeave * call Write_clipboard()
+endif
 noremap <silent> dd dd:call Sync_clipboard_to_selection()<CR>
 noremap <silent> yy yy:call Sync_clipboard_to_selection()<CR>
 
@@ -121,13 +123,16 @@ noremap <silent> yy yy:call Sync_clipboard_to_selection()<CR>
 if has("gui_running")
     set lines=70 columns=120 linespace=0
     if has("gui_win32")
-        set guifont=DejaVu_Sans_Mono_for_Powerline:h10
+        set guifont=DejaVuSansMono_NF:h10
     else
         set guifont=DejaVu\ Sans\ Mono\ 10
     endif
 endif
 
 " Colors
+if has('win32')
+    set termguicolors
+endif
 set bg&
 hi clear
 hi clear Normal
@@ -154,9 +159,9 @@ hi WarningMsg   term=standout ctermfg=DarkRed guifg=Red
 hi WildMenu     term=standout ctermfg=Black ctermbg=Yellow guifg=Black guibg=#CCCC64
 hi Folded       term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=LightGrey
 hi FoldColumn   term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=Grey
-hi DiffAdd      term=bold ctermbg=Black
-hi DiffChange   term=bold ctermbg=Black
-hi DiffDelete   term=bold ctermbg=Black
+hi DiffAdd      term=bold ctermbg=Black guibg=#073642
+hi DiffChange   term=bold ctermbg=Black guibg=#073642
+hi DiffDelete   term=bold ctermbg=Black guifg=#6699CC guibg=#073642
 hi DiffText     term=reverse ctermbg=DarkRed gui=bold guibg=Red
 hi SignColumn   term=standout ctermfg=DarkBlue ctermbg=Grey guifg=DarkBlue guibg=Grey
 hi Conceal      ctermfg=Grey ctermbg=Black guifg=LightGrey guibg=DarkGrey
@@ -178,8 +183,8 @@ hi Cursor       guifg=bg guibg=fg
 hi lCursor      guifg=bg guibg=fg
 hi MatchParen   term=reverse ctermbg=DarkCyan guibg=Cyan
 hi Comment      term=bold ctermfg=DarkBlue guifg=#6699CC
-hi Constant     term=underline ctermfg=DarkRed guifg=Magenta
-hi Special      term=bold ctermfg=DarkMagenta guifg=SlateBlue
+hi Constant     term=underline ctermfg=DarkRed guifg=#DC322F
+hi Special      term=bold ctermfg=DarkMagenta guifg=#C864C8
 hi Identifier   term=underline cterm=NONE ctermfg=DarkCyan guifg=DarkCyan
 hi Statement    term=bold ctermfg=Yellow gui=NONE guifg=#CCCC64
 hi PreProc      term=underline ctermfg=DarkMagenta guifg=#C864C8
@@ -218,8 +223,13 @@ call xolox#easytags#filetypes#add_mapping('proto', 'Protobuf')
 
 let g:NERDDefaultAlign = 'left'
 " <C-_> is actually CTRL-/ in (most?) terminals for some strange reason
-nnoremap <silent> <C-_> :call nerdcommenter#Comment("n", "Toggle")<CR>
-vnoremap <silent> <C-_> :call nerdcommenter#Comment("v", "Toggle")<CR>
+if has('win32')
+    nnoremap <silent> <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
+    vnoremap <silent> <C-/> :call nerdcommenter#Comment("v", "Toggle")<CR>
+else
+    nnoremap <silent> <C-_> :call nerdcommenter#Comment("n", "Toggle")<CR>
+    vnoremap <silent> <C-_> :call nerdcommenter#Comment("v", "Toggle")<CR>
+endif
 
 if &encoding != 'utf-8'
     let &encoding = 'utf-8'
