@@ -239,14 +239,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['python', 'flake8']
-let g:syntastic_python_flake8_args = "--ignore=E309,W503 --max-line-length=120"
-
-let g:syntastic_yaml_checkers = ['yamllint']
-
 let g:formatdef_jq = '"jq"'
 let g:formatters_json = ['jq']
 
@@ -309,13 +301,17 @@ endif
 " Map <C-n> to toggle the NERDTree file browser
 nnoremap <C-n> :NERDTreeToggle<cr>
 
+augroup NerdTreeCustomization
+
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+"autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+"    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+augroup END
 
 let NERDTreeMouseMode=2
 
