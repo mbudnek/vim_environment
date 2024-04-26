@@ -1,3 +1,6 @@
+workspace.diagnosticRelated
+document.echoFiletype
+mypy-type-checker.installServer
 tsserver.reloadProjects
 java.open.serverLog
 java.clean.workspace

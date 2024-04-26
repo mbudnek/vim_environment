@@ -3,5 +3,7 @@
     "suggest.autoTrigger": "none",
     "java.debug.vimspector.profile": null,
     "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
-    "java.format.settings.profile": "GoogleStyle"
+    "java.format.settings.profile": "GoogleStyle",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "mypy-type-checker.args": ["--ignore-missing-imports"]
 }

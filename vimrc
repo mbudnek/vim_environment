@@ -255,7 +255,7 @@ xmap <Leader>q <Plug>VimspectorBalloonEval
 nmap <Leader><F11> <Plug>VimspectorUpFrame
 nmap <Leader><F12> <Plug>VimspectorDownFrame
 
-nnoremap <silent> <leader>f :CocFix<cr>
+nnoremap <silent> <leader>f <Plug>(coc-fix-current)
 nmap <silent> <leader>r <Plug>(coc-refactor)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
