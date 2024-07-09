@@ -17,7 +17,7 @@ function HaveX11()
     return $DISPLAY != ''
 endfunction
 
-if HaveX11()
+if HaveX11() || has('mac')
     set mouse=a
 endif
 
@@ -197,7 +197,7 @@ hi Todo         term=standout ctermfg=Black ctermbg=Yellow guifg=#6699CC guibg=#
 " Highlight when lines get longer than 120 characters
 function! Highlight_long_lines()
     if len(&filetype)
-        hi OverLength ctermbg=DarkGrey guibg=#592929
+        hi OverLength ctermbg=234 guibg=#1c1c1c
         match OverLength /\%121v.*/
     endif
 endfunction
