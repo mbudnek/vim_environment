@@ -11,6 +11,10 @@ let g:easytags_suppress_ctags_warning = 1
 " Move CoC data directory into vim home directory
 let g:coc_data_home=join([split(&rtp, ',')[0], '/coc'], '')
 
+" Ignore markdown in javadoc due to an incompatability with the vim-markdown
+" plugin
+let g:java_ignore_markdown = 1
+
 call pathogen#infect()
 
 function HaveX11()
