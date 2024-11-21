@@ -125,7 +125,10 @@
     },
     "assigneesSampleSize": {
       "description": "Take a random sample of given size from `assignees`.",
-      "type": "integer",
+      "type": [
+        "integer",
+        "null"
+      ],
       "default": null
     },
     "autoApprove": {
@@ -156,11 +159,18 @@
           "type": "string"
         }
       ],
-      "default": null
+      "default": null,
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "autodiscoverNamespaces": {
       "description": "Filter the list of autodiscovered repositories by namespaces.",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string"
       },
@@ -168,7 +178,10 @@
     },
     "autodiscoverProjects": {
       "description": "Filter the list of autodiscovered repositories by project names.",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string"
       },
@@ -176,7 +189,10 @@
     },
     "autodiscoverRepoOrder": {
       "description": "The order method for autodiscover server side repository search.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "enum": [
         "asc",
         "desc"
@@ -185,7 +201,10 @@
     },
     "autodiscoverRepoSort": {
       "description": "The sort method for autodiscover server side repository search.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "enum": [
         "alpha",
         "created",
@@ -197,7 +216,10 @@
     },
     "autodiscoverTopics": {
       "description": "Filter the list of autodiscovered repositories by topics.",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string"
       },
@@ -257,6 +279,7 @@
       "type": "object",
       "default": {
         "fileMatch": [
+          "(^|/).azuredevops/.+\\.ya?ml$",
           "azure.*pipelines?.*\\.ya?ml$"
         ],
         "enabled": false
@@ -306,6 +329,7 @@
       "default": {
         "fileMatch": [
           "(^|/)WORKSPACE(|\\.bazel|\\.bzlmod)$",
+          "\\.WORKSPACE\\.bazel$",
           "\\.bzl$"
         ]
       },
@@ -332,6 +356,11 @@
         "versioning": "semver"
       },
       "$ref": "#"
+    },
+    "bbAutoResolvePrTasks": {
+      "description": "The PR tasks will be automatically completed after the PR is raised.",
+      "type": "boolean",
+      "default": false
     },
     "bbUseDefaultReviewers": {
       "description": "Use the default reviewers (Bitbucket only).",
@@ -374,9 +403,22 @@
       },
       "$ref": "#"
     },
+    "bitrise": {
+      "description": "Configuration object for the bitrise manager",
+      "type": "object",
+      "default": {
+        "fileMatch": [
+          "(^|/)bitrise\\.ya?ml$"
+        ]
+      },
+      "$ref": "#"
+    },
     "branchConcurrentLimit": {
       "description": "Limit to a maximum of x concurrent branches. 0 means no limit, `null` (default) inherits value from `prConcurrentLimit`.",
-      "type": "integer",
+      "type": [
+        "integer",
+        "null"
+      ],
       "default": null
     },
     "branchName": {
@@ -445,6 +487,17 @@
       },
       "$ref": "#"
     },
+    "bun-version": {
+      "description": "Configuration object for the bun-version manager",
+      "type": "object",
+      "default": {
+        "fileMatch": [
+          "(^|/)\\.bun-version$"
+        ],
+        "versioning": "npm"
+      },
+      "$ref": "#"
+    },
     "bundler": {
       "description": "Configuration object for the bundler manager",
       "type": "object",
@@ -464,6 +517,11 @@
       "description": "Maximum duration in minutes to keep datasource cache entries.",
       "type": "integer",
       "default": 10080
+    },
+    "cachePrivatePackages": {
+      "description": "Cache private packages in the datasource cache. This is useful for self-hosted setups",
+      "type": "boolean",
+      "default": false
     },
     "cacheTtlOverride": {
       "description": "An object that contains cache namespace TTL override values.",
@@ -658,6 +716,17 @@
       "description": "The directory where Renovate stores its containerbase cache. If left empty, Renovate creates a subdirectory within the `cacheDir`.",
       "type": "string"
     },
+    "copier": {
+      "description": "Configuration object for the copier manager",
+      "type": "object",
+      "default": {
+        "fileMatch": [
+          "(^|/)\\.copier-answers(\\..+)?\\.ya?ml"
+        ],
+        "versioning": "pep440"
+      },
+      "$ref": "#"
+    },
     "cpanfile": {
       "description": "Configuration object for the cpanfile manager",
       "type": "object",
@@ -834,11 +903,19 @@
     },
     "defaultRegistryUrls": {
       "description": "List of registry URLs to use as the default for a datasource.",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string"
       },
       "default": null
+    },
+    "deleteConfigFile": {
+      "description": "If set to `true`, Renovate tries to delete the self-hosted config file after reading it.",
+      "type": "boolean",
+      "default": false
     },
     "dependencyDashboard": {
       "description": "Whether to create a \"Dependency Dashboard\" issue in the repository.",
@@ -866,7 +943,10 @@
     },
     "dependencyDashboardLabels": {
       "description": "These labels will always be applied on the Dependency Dashboard issue, even when they have been removed manually.",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string"
       },
@@ -962,10 +1042,15 @@
       "description": "Pass CLI flags to `docker run` command when `binarySource=docker`.",
       "type": "string"
     },
+    "dockerMaxPages": {
+      "description": "By default, Renovate fetches up to 20 pages of Docker tags from registries. But you can set your own limit with this config option.",
+      "type": "integer",
+      "default": 20
+    },
     "dockerSidecarImage": {
       "description": "Change this value to override the default Renovate sidecar image.",
       "type": "string",
-      "default": "ghcr.io/containerbase/sidecar:10.11.7"
+      "default": "ghcr.io/containerbase/sidecar:13.0.20"
     },
     "dockerUser": {
       "description": "Set the `UID` and `GID` for Docker-based binaries if you use `binarySource=docker`.",
@@ -999,7 +1084,10 @@
     },
     "dryRun": {
       "description": "If enabled, perform a dry run by logging messages instead of creating/updating/deleting branches and PRs.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "enum": [
         "extract",
         "lookup",
@@ -1021,7 +1109,10 @@
     },
     "encrypted": {
       "description": "An object containing configuration encrypted with project key.",
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "default": null,
       "$ref": "#"
     },
@@ -1031,7 +1122,10 @@
     },
     "endpoint": {
       "description": "Custom endpoint to use.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "env": {
@@ -1296,6 +1390,25 @@
       },
       "$ref": "#"
     },
+    "glasskube": {
+      "description": "Configuration object for the glasskube manager",
+      "type": "object",
+      "default": {
+        "fileMatch": []
+      },
+      "$ref": "#"
+    },
+    "gleam": {
+      "description": "Configuration object for the gleam manager",
+      "type": "object",
+      "default": {
+        "fileMatch": [
+          "(^|/)gleam.toml$"
+        ],
+        "versioning": "hex"
+      },
+      "$ref": "#"
+    },
     "globalExtends": {
       "description": "Configuration presets to use or extend for a self-hosted config.",
       "type": "array",
@@ -1364,17 +1477,26 @@
     },
     "groupName": {
       "description": "Human understandable name for the dependency group.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "groupSlug": {
       "description": "Slug to use for group (e.g. in branch name). Slug is calculated from `groupName` if `null`.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "hashedBranchLength": {
       "description": "If enabled, branch names will use a hashing function to ensure each branch has that length.",
-      "type": "integer",
+      "type": [
+        "integer",
+        "null"
+      ],
       "default": null
     },
     "helm-requirements": {
@@ -1501,7 +1623,10 @@
               },
               "artifactAuth": {
                 "description": "A list of package managers to enable artifact auth. Only managers on the list are enabled. All are enabled if `null`.",
-                "type": "array",
+                "type": [
+                  "array",
+                  "null"
+                ],
                 "items": {
                   "type": "string",
                   "enum": [
@@ -1517,7 +1642,10 @@
               },
               "concurrentRequestLimit": {
                 "description": "Limit concurrent requests per host.",
-                "type": "integer",
+                "type": [
+                  "integer",
+                  "null"
+                ],
                 "default": null
               },
               "dnsCache": {
@@ -1541,17 +1669,26 @@
               },
               "httpsCertificate": {
                 "description": "The certificate chains in PEM format.",
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "default": null
               },
               "httpsCertificateAuthority": {
                 "description": "The overriding trusted CA certificate.",
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "default": null
               },
               "httpsPrivateKey": {
                 "description": "The private key in PEM format.",
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "default": null
               },
               "insecureRegistry": {
@@ -1823,17 +1960,11 @@
     },
     "logContext": {
       "description": "Add a global or per-repo log context to each log entry.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
-    },
-    "logFile": {
-      "description": "Log file path.",
-      "type": "string"
-    },
-    "logFileLevel": {
-      "description": "Set the log file log level.",
-      "type": "string",
-      "default": "debug"
     },
     "logLevelRemap": {
       "description": "Remap log levels to different levels.",
@@ -1960,12 +2091,18 @@
     },
     "milestone": {
       "description": "The number of a milestone. If set, the milestone will be set when Renovate creates the PR.",
-      "type": "integer",
+      "type": [
+        "integer",
+        "null"
+      ],
       "default": null
     },
     "minimumReleaseAge": {
       "description": "Time required before a new release is considered stable.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "minor": {
@@ -1980,6 +2117,17 @@
       "default": {
         "fileMatch": [
           "(^|/)Mintfile$"
+        ]
+      },
+      "$ref": "#"
+    },
+    "mise": {
+      "description": "Configuration object for the mise manager",
+      "type": "object",
+      "default": {
+        "fileMatch": [
+          "(^|/)\\.?mise\\.toml$",
+          "(^|/)\\.?mise/config\\.toml$"
         ]
       },
       "$ref": "#"
@@ -2103,7 +2251,10 @@
     },
     "onboardingCommitMessage": {
       "description": "Change this value to override the default onboarding commit message.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "onboardingConfig": {
@@ -2121,8 +2272,13 @@
     },
     "onboardingNoDeps": {
       "description": "Onboard the repository even if no dependencies are found.",
-      "type": "boolean",
-      "default": false
+      "type": "string",
+      "enum": [
+        "auto",
+        "enabled",
+        "disabled"
+      ],
+      "default": "auto"
     },
     "onboardingPrTitle": {
       "description": "Change this value to override the default onboarding PR title.",
@@ -2182,110 +2338,8 @@
                 "type": "string"
               },
               "changelogUrl": {
-                "description": "If set, Renovate will use this URL to fetch changelogs for a matched dependency. Valid only within a `packageRules` object.",
+                "description": "Set a custom URL for the changelog. Renovate will put this URL in the PR body text.",
                 "type": "string"
-              },
-              "excludeDepNames": {
-                "description": "Dep names to exclude. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "excludeDepPatterns": {
-                "description": "Dep name patterns to exclude. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "regex"
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "format": "regex"
-                  }
-                ]
-              },
-              "excludeDepPrefixes": {
-                "description": "Dep names prefixes to exclude. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "excludePackageNames": {
-                "description": "Package names to exclude. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "excludePackagePatterns": {
-                "description": "Package name patterns to exclude. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "regex"
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "format": "regex"
-                  }
-                ]
-              },
-              "excludePackagePrefixes": {
-                "description": "Package name prefixes to exclude. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "excludeRepositories": {
-                "description": "List of repositories to exclude (e.g. `[\"**/*-archived\"]`). Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
               },
               "matchBaseBranches": {
                 "description": "List of strings containing exact matches (e.g. `[\"main\"]`) and/or regex expressions (e.g. `[\"/^release/.*/\"]`). Valid only within a `packageRules` object.",
@@ -2381,36 +2435,6 @@
                   }
                 ]
               },
-              "matchDepPatterns": {
-                "description": "Dep name patterns to match. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "regex"
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "format": "regex"
-                  }
-                ]
-              },
-              "matchDepPrefixes": {
-                "description": "Dep names prefixes to match. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
               "matchDepTypes": {
                 "description": "List of depTypes to match (e.g. [`peerDependencies`]). Valid only within `packageRules` object.",
                 "oneOf": [
@@ -2427,6 +2451,13 @@
               },
               "matchFileNames": {
                 "description": "List of strings to do an exact match against package and lock files with full path. Only works inside a `packageRules` object.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "matchJsonata": {
+                "description": "A JSONata expression to match against the full config object. Valid only within a `packageRules` object.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -2464,52 +2495,8 @@
                   }
                 ]
               },
-              "matchPackagePatterns": {
-                "description": "Package name patterns to match. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "regex"
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "format": "regex"
-                  }
-                ]
-              },
-              "matchPackagePrefixes": {
-                "description": "Package name prefixes to match. Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
               "matchRepositories": {
                 "description": "List of repositories to match (e.g. `[\"**/*-archived\"]`). Valid only within a `packageRules` object.",
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
-              "matchSourceUrlPrefixes": {
-                "description": "A list of source URL prefixes to match against, commonly used to group monorepos or packages from the same organization.",
                 "oneOf": [
                   {
                     "type": "array",
@@ -2574,6 +2561,18 @@
                   }
                 ]
               },
+              "overrideDatasource": {
+                "description": "Override the datasource value.",
+                "type": "string"
+              },
+              "overrideDepName": {
+                "description": "Override the depName value.",
+                "type": "string"
+              },
+              "overridePackageName": {
+                "description": "Override the packageName value.",
+                "type": "string"
+              },
               "prPriority": {
                 "description": "Set sorting priority for PR creation. PRs with higher priority are created first, negative priority last.",
                 "type": "integer",
@@ -2622,6 +2621,14 @@
         "fileMatch": [
           "(^|/)pyproject\\.toml$"
         ]
+      },
+      "$ref": "#"
+    },
+    "pep723": {
+      "description": "Configuration object for the pep723 manager",
+      "type": "object",
+      "default": {
+        "fileMatch": []
       },
       "$ref": "#"
     },
@@ -2730,8 +2737,13 @@
     },
     "platformCommit": {
       "description": "Use platform API to perform commits instead of using Git directly.",
-      "type": "boolean",
-      "default": false
+      "type": "string",
+      "enum": [
+        "auto",
+        "disabled",
+        "enabled"
+      ],
+      "default": "auto"
     },
     "poetry": {
       "description": "Configuration object for the poetry manager",
@@ -2755,6 +2767,7 @@
           "gomodTidy1.17",
           "gomodTidyE",
           "gomodUpdateImportPaths",
+          "gomodSkipVendor",
           "helmUpdateSubChartArchives",
           "npmDedupe",
           "pnpmDedupe",
@@ -2852,10 +2865,10 @@
         "Pending": "{{{displayPending}}}",
         "References": "{{{references}}}",
         "Package file": "{{{packageFile}}}",
-        "Age": "{{#if newVersion}}[![age](https://developer.mend.io/api/mc/badges/age/{{datasource}}/{{replace '/' '%2f' depName}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}",
-        "Adoption": "{{#if newVersion}}[![adoption](https://developer.mend.io/api/mc/badges/adoption/{{datasource}}/{{replace '/' '%2f' depName}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}",
-        "Passing": "{{#if newVersion}}[![passing](https://developer.mend.io/api/mc/badges/compatibility/{{datasource}}/{{replace '/' '%2f' depName}}/{{{currentVersion}}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}",
-        "Confidence": "{{#if newVersion}}[![confidence](https://developer.mend.io/api/mc/badges/confidence/{{datasource}}/{{replace '/' '%2f' depName}}/{{{currentVersion}}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}"
+        "Age": "{{#if newVersion}}[![age](https://developer.mend.io/api/mc/badges/age/{{datasource}}/{{replace '/' '%2f' packageName}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}",
+        "Adoption": "{{#if newVersion}}[![adoption](https://developer.mend.io/api/mc/badges/adoption/{{datasource}}/{{replace '/' '%2f' packageName}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}",
+        "Passing": "{{#if newVersion}}[![passing](https://developer.mend.io/api/mc/badges/compatibility/{{datasource}}/{{replace '/' '%2f' packageName}}/{{{currentVersion}}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}",
+        "Confidence": "{{#if newVersion}}[![confidence](https://developer.mend.io/api/mc/badges/confidence/{{datasource}}/{{replace '/' '%2f' packageName}}/{{{currentVersion}}}/{{{newVersion}}}?slim=true)](https://docs.renovatebot.com/merge-confidence/){{/if}}"
       }
     },
     "prBodyNotes": {
@@ -2920,7 +2933,10 @@
     },
     "prTitle": {
       "description": "Pull Request title template. Inherits from `commitMessage` if null.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "prTitleStrict": {
@@ -3052,7 +3068,8 @@
         "auto",
         "never",
         "conflicted",
-        "behind-base-branch"
+        "behind-base-branch",
+        "automerging"
       ],
       "default": "auto"
     },
@@ -3093,7 +3110,10 @@
     },
     "registryUrls": {
       "description": "List of URLs to try for dependency lookup. Package manager specific.",
-      "type": "array",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string"
       },
@@ -3114,12 +3134,18 @@
     },
     "reportPath": {
       "description": "Path to where the file should be written. In case of `s3` this has to be a full S3 URI.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "reportType": {
       "description": "Set how, or if, reports should be generated.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "enum": [
         "logging",
         "file",
@@ -3178,7 +3204,10 @@
     },
     "reviewersSampleSize": {
       "description": "Take a random sample of given size from `reviewers`.",
-      "type": "integer",
+      "type": [
+        "integer",
+        "null"
+      ],
       "default": null
     },
     "rollback": {
@@ -3217,6 +3246,15 @@
         "pinDigests": false
       },
       "$ref": "#"
+    },
+    "s3Endpoint": {
+      "description": "If set, Renovate will use this string as the `endpoint` when creating the AWS S3 client instance.",
+      "type": "string"
+    },
+    "s3PathStyle": {
+      "description": "If set, Renovate will enable `forcePathStyle` when creating the AWS S3 client instance.",
+      "type": "boolean",
+      "default": false
     },
     "sbt": {
       "description": "Configuration object for the sbt manager",
@@ -3321,7 +3359,10 @@
     },
     "skipInstalls": {
       "description": "Skip installing modules/dependencies if lock file updating is possible without a full install.",
-      "type": "boolean",
+      "type": [
+        "boolean",
+        "null"
+      ],
       "default": null
     },
     "statusCheckNames": {
@@ -3358,6 +3399,14 @@
         ]
       },
       "default": []
+    },
+    "sveltos": {
+      "description": "Configuration object for the sveltos manager",
+      "type": "object",
+      "default": {
+        "fileMatch": []
+      },
+      "$ref": "#"
     },
     "swift": {
       "description": "Configuration object for the swift manager",
@@ -3446,11 +3495,6 @@
       "description": "Repository Auth Token.",
       "type": "string"
     },
-    "transitiveRemediation": {
-      "description": "Enable remediation of transitive dependencies.",
-      "type": "boolean",
-      "default": false
-    },
     "travis": {
       "description": "Configuration object for the travis manager",
       "type": "object",
@@ -3506,7 +3550,10 @@
     },
     "userAgent": {
       "description": "If set to any string, Renovate will use this as the `user-agent` it sends with HTTP requests.",
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "default": null
     },
     "userStrings": {
@@ -3613,10 +3660,44 @@
         "minimumReleaseAge": null,
         "rangeStrategy": "update-lockfile",
         "commitMessageSuffix": "[SECURITY]",
-        "branchTopic": "{{{datasource}}}-{{{depName}}}-vulnerability",
-        "prCreation": "immediate"
+        "branchTopic": "{{{datasource}}}-{{{depNameSanitized}}}-vulnerability",
+        "prCreation": "immediate",
+        "vulnerabilityFixStrategy": "lowest"
       },
-      "$ref": "#"
+      "$ref": "#",
+      "items": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "description": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "A custom description for this configuration object"
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "description": "A custom description for this configuration object"
+                  }
+                ]
+              },
+              "vulnerabilityFixStrategy": {
+                "description": "Strategy to use when fixing vulnerabilities. `lowest` will propose the earliest version with a fix, `highest` will always pick the latest version.",
+                "type": "string",
+                "enum": [
+                  "lowest",
+                  "highest"
+                ],
+                "default": "lowest"
+              }
+            }
+          }
+        ]
+      }
     },
     "woodpecker": {
       "description": "Configuration object for the woodpecker manager",

@@ -223,7 +223,7 @@ call xolox#easytags#filetypes#add_mapping('proto', 'Protobuf')
 
 let g:NERDDefaultAlign = 'left'
 " <C-_> is actually CTRL-/ in (most?) terminals for some strange reason
-if has('win32')
+if has('win32') || has('mac')
     nnoremap <silent> <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
     vnoremap <silent> <C-/> :call nerdcommenter#Comment("v", "Toggle")<CR>
 else

@@ -5,5 +5,8 @@
     "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
     "java.format.settings.profile": "GoogleStyle",
     "java.compile.nullAnalysis.mode": "automatic",
-    "mypy-type-checker.args": ["--ignore-missing-imports"]
+    "mypy-type-checker.args": [
+      "--ignore-missing-imports"
+    ],
+    "java.import.gradle.java.home": "/usr/local/Cellar/openjdk@17/17.0.11/libexec/openjdk.jdk/Contents/Home"
 }
